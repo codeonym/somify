@@ -24,7 +24,7 @@ class SOMApp(CTk):
 
         # Error Log path
         self.error_path = os.path.join("logs", "errorLogs.txt")
-        self.geometry("800x600")
+        self.geometry("1920x1080")
         self.title("SOMify -  Simple Image Compressor")
         # Load and set the logo image
 
@@ -143,6 +143,10 @@ class SOMApp(CTk):
                 output_image = cv2.cvtColor(output_image, cv2.COLOR_BGR2RGB)
 
             output_image = Image.fromarray(output_image)
+
+            # Store the compressed image in the instance variable
+            self.compressed_image = output_image
+
             output_image.thumbnail((400, 400))
             # Keep a reference to the PhotoImage object
             self.photo = ImageTk.PhotoImage(output_image)
@@ -159,8 +163,6 @@ class SOMApp(CTk):
 
             self.mse_label.configure(text=f"MSE Value: {mse_value:.4f}")
 
-            # Store the compressed image in the instance variable
-            self.compressed_image = output_image
         except Exception as e:
             self.mse_label.configure(text=f"Error: Error Occurred Check File: {self.error_path} For More Details")
             self.error_handler.error_log(e.__str__())

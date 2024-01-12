@@ -90,7 +90,6 @@ def main():
         cv2.imwrite(output_image_name, output_image)
 
         # Print the MSE between the original and the compressed image
-        print()
         print("Mean Square Error = ", mse)
     except Exception as e:
 
